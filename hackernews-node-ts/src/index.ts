@@ -1,14 +1,37 @@
 import 'graphql-import-node'
-import {execute, parse} from "graphql"
-import {schema } from "./schema"
+import fastify from 'fastify'
+import { getGraphQLParameters, processRequest, Request, sendResult } from "graphql-helix";
+import { schema } from "./schema"
 
 async function main() {
-    const myQuery = parse(`query { info }`)
-    const result = await execute({
-        schema,
-        document: myQuery
-    })
-    console.log(result)
-}
+    const server = fastify();
 
+    server.route({
+        method: "POST",
+        url: "/graphql",
+        handler: async (req, reply) => {
+            const request: Request = {
+                headers: req.headers,
+                method: req.method,
+                query: req.query,
+                body: req.body
+            };
+
+            const {operationName, query, variables} = getGraphQLParameters(request);
+
+            const result = await processRequest({
+                request,
+                schema,
+                operationName,
+                query,
+                variables,
+            });
+            sendResult(result, reply.raw)
+        }
+    })
+
+    server.listen({ port: 3000 }, () => {
+        console.log(`Server is running on http://localhost:3000/`);
+    });
+}
 main()
