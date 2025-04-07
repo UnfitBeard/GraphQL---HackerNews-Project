@@ -1,2 +1,3 @@
-# QA-QE-sw-engineering-
-Projects from the teach2give QA attachment
+#GraphQL
+implementing the HackerNews project using GraphQL API
+Same to twitter clone but using GraphQL
