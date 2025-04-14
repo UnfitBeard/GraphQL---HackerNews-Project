@@ -1,7 +1,8 @@
 import 'graphql-import-node'
 import fastify from 'fastify'
-import { getGraphQLParameters, processRequest, Request, renderGraphiQL, shouldRenderGraphiQL, sendResult } from "graphql-helix";
+import { getGraphQLParameters, processRequest, Request, renderGraphiQL, shouldRenderGraphiQL, sendResult } from 'graphql-helix';
 import { schema } from "./schema"
+import { contextFactory } from './context';
 
 async function main() {
     const server = fastify();
@@ -33,6 +34,7 @@ async function main() {
                 request,
                 schema,
                 operationName,
+                contextFactory:()=> contextFactory(req),
                 query,
                 variables,
             });
@@ -40,8 +42,8 @@ async function main() {
         }
     })
 
-    server.listen({ port: 3000 }, () => {
-        console.log(`GraphQL API is running on http://localhost:3000/`);
+    server.listen({ port: 5000 }, () => {
+        console.log(`GraphQL API is running on http://localhost:5000/`);
     });
 }
 main()
