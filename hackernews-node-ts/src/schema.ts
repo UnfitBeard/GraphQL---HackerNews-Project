@@ -5,7 +5,6 @@ import { GraphQLContext } from "./context";
 import { compare, hash } from "bcryptjs";
 import { APP_SECRET } from "./auth";
 import { sign } from "jsonwebtoken";
-import { error } from "console";
 
 const resolvers = {
     Query: {
@@ -40,7 +39,9 @@ const resolvers = {
     },
 
     Mutation: {
-        signup: async (parent: unknown, args: { email: string, password: string, name: string }, context: GraphQLContext
+        signup: async (parent: unknown, 
+            args: { email: string, password: string, name: string }, 
+            context: GraphQLContext
         ) => {
             const password = await hash(args.password, 10)
             const user = await context.prisma.user.create({
