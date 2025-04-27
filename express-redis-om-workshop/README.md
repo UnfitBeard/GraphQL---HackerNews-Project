@@ -1,6 +1,6 @@
 # Redis OM + Express Workshop Starter Code
 
-This is the wonderful and amazing repository for my Redis OM + Express Workshop. The workshop might well be done in person, but it's also written up as a tutorial on [redis.io](https://redis.io/docs/stack/get-started/tutorials/stack-node/) and in convenient video form on YouTube linked below!
+tutorial on [redis.io](https://redis.io/docs/stack/get-started/tutorials/stack-node/). This is just my practice version
 
 # Simple CRUD API with Redis
 
