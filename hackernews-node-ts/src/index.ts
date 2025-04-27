@@ -17,6 +17,7 @@ async function main() {
                 query: req.query,
                 body: req.body
             };
+            
 
             if (shouldRenderGraphiQL(request)) {
                 reply.header("content-type", "text/html")
