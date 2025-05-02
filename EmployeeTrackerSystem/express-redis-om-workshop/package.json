@@ -1,6 +1,7 @@
 {
   "author": "Guy Royse <guy@guyroyse.com> (http://guyroyse.com/)",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^5.1.0",
     "redis": "^4.0.4",

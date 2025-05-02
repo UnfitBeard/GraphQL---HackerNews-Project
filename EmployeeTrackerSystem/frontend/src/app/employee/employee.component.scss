@@ -1,0 +1,48 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  background-color: #f0fff4; // light green background
+  justify-self: center;
+
+  th {
+    background-color: #38a169; // medium green
+    color: white;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #2f855a;
+  }
+
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #c6f6d5;
+  }
+
+  tr:nth-child(even) {
+    background-color: #e6fffa; // soft mint green for striped effect
+  }
+
+  tr:hover {
+    background-color: #c6f6d5; // light green on hover
+  }
+
+  button {
+    margin-right: 5px;
+    background-color: #68d391; // green buttons
+    color: white;
+
+    &:hover {
+      background-color: #48bb78;
+    }
+  }
+}
+
+button {
+  margin-right: 5px;
+  background-color: #68d391; // green buttons
+  color: white;
+
+  &:hover {
+    background-color: #48bb78;
+  }
+}

@@ -1,0 +1,103 @@
+<form [formGroup]="additionForm" (ngSubmit)="onSubmit()" class="form-container">
+  <!-- First Name -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>First Name</mat-label>
+    <input matInput formControlName="firstName" />
+    <mat-error *ngIf="additionForm.get('firstName')?.invalid && additionForm.get('firstName')?.touched">
+      First Name is required (min 2 characters)
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Last Name -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Last Name</mat-label>
+    <input matInput formControlName="lastName" />
+    <mat-error *ngIf="additionForm.get('lastName')?.invalid && additionForm.get('lastName')?.touched">
+      Last Name is required (min 2 characters)
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Age -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Age</mat-label>
+    <input matInput type="number" formControlName="age" />
+    <mat-error *ngIf="additionForm.get('age')?.invalid && additionForm.get('age')?.touched">
+      Age is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Verified -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Verified</mat-label>
+    <mat-select formControlName="verified">
+      <mat-option value="">Select...</mat-option>
+      <mat-option value="true">Yes</mat-option>
+      <mat-option value="false">No</mat-option>
+    </mat-select>
+    <mat-error *ngIf="additionForm.get('verified')?.invalid && additionForm.get('verified')?.touched">
+      Verification status is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Personal Statement -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Personal Statement</mat-label>
+    <textarea matInput rows="4" formControlName="personalStatement"
+      placeholder="Describe your professional background, skills, and career goals (3-5 sentences)">
+    </textarea>
+    <mat-hint align="end">
+      {{ additionForm.get('personalStatement')?.value?.length || 0 }}/50
+    </mat-hint>
+    <mat-error *ngIf="additionForm.get('personalStatement')?.invalid && additionForm.get('personalStatement')?.touched">
+      Minimum 20 characters required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Skills -->
+  <div formArrayName="skills" class="skills-section">
+    <h3>Skills</h3>
+    <div *ngFor="let skill of skills.controls; let i = index" [formGroupName]="i" class="skill-row">
+      <mat-form-field appearance="outline" class="skill-input">
+        <mat-label>Skill #{{ i + 1 }}</mat-label>
+        <input matInput formControlName="skill" />
+        <mat-error *ngIf="skill.get('skill')?.invalid && skill.get('skill')?.touched">
+          Skill is required
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-icon-button color="warn" (click)="removeSkill(i)" aria-label="Remove Skill">
+        <mat-icon>remove_circle</mat-icon>
+      </button>
+    </div>
+
+    <button mat-stroked-button color="primary" (click)="addSkill()" type="button">
+      <mat-icon>add</mat-icon> Add Skill
+    </button>
+  </div>
+
+  <!-- Location -->
+  <div formGroupName="location" class="location-section">
+    <h3>Location</h3>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Longitude</mat-label>
+      <input matInput type="number" formControlName="longitude" />
+      <mat-error *ngIf="additionForm.get('location.longitude')?.invalid && additionForm.get('location.longitude')?.touched">
+        Longitude is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Latitude</mat-label>
+      <input matInput type="number" formControlName="latitude" />
+      <mat-error *ngIf="additionForm.get('location.latitude')?.invalid && additionForm.get('location.latitude')?.touched">
+        Latitude is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <!-- Submit Button -->
+  <button mat-raised-button color="accent" type="submit" [disabled]="additionForm.invalid">
+    Submit
+  </button>
+</form>

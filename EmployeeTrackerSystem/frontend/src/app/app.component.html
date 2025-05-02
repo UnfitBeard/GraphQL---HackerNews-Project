@@ -1,0 +1,35 @@
+<mat-sidenav-container class="example-container">
+
+  <!-- Sidebar -->
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')">
+    <button mat-icon-button (click)="sidenav.toggle()" aria-label="Toggle sidenav" routerLink="/landing-page">Home
+      <mat-icon><img src="flaticon.png" alt="F"/></mat-icon>
+    </button>
+    <button mat-button class="employees" [routerLink]="['/employees']">Employees</button>
+  </mat-sidenav>
+
+  <!-- Main content with toolbar -->
+  <mat-sidenav-content>
+
+    <!-- Toolbar (top nav) -->
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()" aria-label="Toggle sidenav">
+        <mat-icon><img src="flaticon.png" alt="F"/></mat-icon>
+      </button>
+      <span>Workforce</span>
+      <span class="example-spacer"></span>
+      <button mat-button aria-label="Sign Up">
+        Sign In
+      </button>
+      <button mat-button aria-label="Sign In" [routerLink]="['/login']">
+        Sign Up
+      </button>
+    </mat-toolbar>
+
+    <!-- Page content -->
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
