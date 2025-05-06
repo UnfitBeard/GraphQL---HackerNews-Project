@@ -236,6 +236,58 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/person_id"
                   - $ref: "#/components/schemas/person_location"
+  /admin/register:
+    put:
+      tags:
+        - Admin
+      summary: Register a new admin
+      description: Creates a new admin user account
+      operationId: registerAdmin
+      requestBody:
+        description: Admin registration data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/adminCredentials"
+      responses:
+        '201':
+          description: Admin registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/adminResponse"
+        '409':
+          description: Username already in use
+        '500':
+          description: Internal server error
+
+  /admin/login:
+    post:
+      tags:
+        - Admin
+      summary: Login as admin
+      description: Authenticates an admin with username and password
+      operationId: loginAdmin
+      requestBody:
+        description: Admin login credentials
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/adminCredentials"
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/adminResponse"
+        '401':
+          description: Invalid username or password
+        '500':
+          description: Internal server error
+  
 
 components:
   parameters:
@@ -444,3 +496,29 @@ components:
       type: integer
       format: int32
       example: 20
+      
+    adminCredentials:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+          example: adminuser
+        password:
+          type: string
+          example: securePassword123
+
+    adminResponse:
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: Alice
+        lastName:
+          type: string
+          example: Smith
+        username:
+          type: string
+          example: adminuser

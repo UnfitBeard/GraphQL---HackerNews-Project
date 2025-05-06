@@ -1,7 +1,7 @@
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { LandingPageComponent } from "./landing-page/landing-page.component";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
@@ -12,7 +12,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-root',
-  imports: [MatIconModule, MatToolbarModule, MatCheckboxModule, ReactiveFormsModule, CommonModule, RouterModule, MatSidenavModule, FormsModule, MatButtonModule],
+  imports: [MatIconModule, MatToolbarModule, MatCheckboxModule, ReactiveFormsModule, CommonModule, RouterModule, MatSidenavModule, FormsModule, MatButtonModule, RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

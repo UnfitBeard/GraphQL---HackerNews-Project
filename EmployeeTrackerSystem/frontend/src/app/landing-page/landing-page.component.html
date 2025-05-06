@@ -1,4 +1,6 @@
-<div class="container">
-  <h1>Your all In One Workforce Management App</h1>
-  <button mat-button aria-label="Manage Employees">Start Your Management Process</button>
-</div>
+<mat-card class="container">
+  <h1 class="mat-display-1">Your All-In-One Workforce Management App</h1>
+  <button mat-raised-button color="primary" aria-label="Manage Employees" [routerLink]="['/login']" routerLinkActive="router-link-active" >
+    Start Your Management Process
+  </button>
+</mat-card>

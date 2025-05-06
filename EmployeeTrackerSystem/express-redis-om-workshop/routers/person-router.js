@@ -34,3 +34,4 @@ router.delete('/:id', async(req, res) => {
     await personRepository.remove(req.params.id)
     res.send({entityId: req.params.id})
 })
+

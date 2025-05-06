@@ -18,11 +18,14 @@
       </button>
       <span>Workforce</span>
       <span class="example-spacer"></span>
-      <button mat-button aria-label="Sign Up">
+      <button  mat-button aria-label="Sign Up" [routerLink]="['/register']">
         Sign In
       </button>
       <button mat-button aria-label="Sign In" [routerLink]="['/login']">
         Sign Up
+      </button>
+      <button mat-button aria-label="Sign In" [routerLink]="['/login']">
+        Log out
       </button>
     </mat-toolbar>
 

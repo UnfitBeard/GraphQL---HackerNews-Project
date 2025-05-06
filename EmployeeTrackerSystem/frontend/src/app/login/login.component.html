@@ -1,7 +1,35 @@
-<h2>Register</h2>
-<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-  <div class="form-controls">
-    <label for="username">username</label>
-    <input type="text" name="username" id="username" formControlName="username" class="form-control">
+<h2>Login</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Username</mat-label>
+    <input matInput formControlName="username" />
+    <mat-error *ngIf="submitted && f['username'].errors?.['required']">
+      Username is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password" />
+    <mat-error *ngIf="submitted && f['password'].errors?.['required']">
+      Password is required
+    </mat-error>
+  </mat-form-field>
+
+  <div class="button-group">
+    <button mat-raised-button color="primary" [disabled]="loading">
+      Login
+    </button>
+
+    <mat-spinner
+      *ngIf="loading"
+      diameter="24"
+      style="margin-left: 12px;"
+    ></mat-spinner>
+
+    <button mat-button [routerLink]="['/register']">
+      Register
+    </button>
   </div>
 </form>

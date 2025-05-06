@@ -1,0 +1,49 @@
+<h2>Register</h2>
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>First Name</mat-label>
+    <input matInput formControlName="firstName" />
+    <mat-error *ngIf="submitted && f['firstName'].errors?.['required']">
+      First Name is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Last Name</mat-label>
+    <input matInput formControlName="lastName" />
+    <mat-error *ngIf="submitted && f['lastName'].errors?.['required']">
+      Last Name is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Username</mat-label>
+    <input matInput formControlName="username" />
+    <mat-error *ngIf="submitted && f['username'].errors?.['required']">
+      Username is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password" />
+    <mat-error *ngIf="submitted && f['password'].errors?.['required']">
+      Password is required
+    </mat-error>
+    <mat-error *ngIf="submitted && f['password'].errors?.['minlength']">
+      Password must be at least 6 characters
+    </mat-error>
+  </mat-form-field>
+
+  <div class="button-group">
+    <button mat-raised-button color="primary" [disabled]="loading">
+      Register
+    </button>
+
+    <mat-spinner *ngIf="loading" diameter="24" style="margin-left: 12px;"></mat-spinner>
+
+    <button mat-button [routerLink]="['/login']">
+      Cancel
+    </button>
+  </div>
+</form>

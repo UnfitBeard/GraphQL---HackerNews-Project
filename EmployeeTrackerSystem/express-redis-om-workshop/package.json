@@ -1,9 +1,11 @@
 {
   "author": "Guy Royse <guy@guyroyse.com> (http://guyroyse.com/)",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "redis": "^4.0.4",
     "redis-om": "^0.2.0",
     "swagger-ui-express": "^4.3.0",

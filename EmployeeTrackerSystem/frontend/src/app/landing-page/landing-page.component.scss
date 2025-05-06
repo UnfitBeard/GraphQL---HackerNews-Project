@@ -1,25 +1,23 @@
 .container {
-  background-color: aliceblue;
-  border: 1px solid green;
-  border-radius: 15px;
-  width: 80%;
-  height: 80vh;
-  justify-self: center;
-  margin-top: 5px;
-  padding: 10px;
+  max-width: 60%;
+  margin: 100px auto;
+  text-align: center;
+  padding: 40px;
+  background: rgb(128, 227, 151);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+mat-card {
+  padding: 24px;
 }
 
 h1 {
-  font-size: 90px;
+  margin-bottom: 32px;
+  font-weight: 900;
 }
 
-mat-button {
-  background-color: green;
-  color: white;
-  border: 0;
-  border-radius: 15px;
-  height: fit-content;
-  width: fit-content;
-  padding: 5px;
+button {
+  font-size: 16px;
+  padding: 12px 24px;
 }
-

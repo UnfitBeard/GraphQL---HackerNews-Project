@@ -6,6 +6,7 @@ import YAML from "yamljs";
 import { router as personRouter } from "./routers/person-router.js";
 import { router as searchRouter } from "./routers/search-router.js";
 import { router as locationRouter } from './routers/location-router.js'
+import { router as adminRouter } from './routers/auth_router.js'
 import cors from 'cors'
 /* create an express app and use JSON */
 const app = new express();
@@ -18,6 +19,7 @@ app.use(cors({
 //routers
 app.use("/person", personRouter, locationRouter);
 app.use('/persons', searchRouter)
+app.use('/admin', adminRouter)
 
 /* set up swagger in the root */
 const swaggerDocument = YAML.load("api.yaml");
