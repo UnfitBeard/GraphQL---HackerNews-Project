@@ -1,0 +1,84 @@
+# Build results
+bin/
+obj/
+out/
+[Ll]og/
+*.log
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# Visual Studio
+.vs/
+
+# Rider
+.idea/
+
+# ASP.NET artifacts
+wwwroot/lib/
+wwwroot/dist/
+wwwroot/node_modules/
+
+# .NET secrets and tools
+secrets.json
+*.pfx
+*.snk
+
+# .NET Core tooling
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# OS junk
+*.DS_Store
+*.AppleDouble
+*.Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# JetBrains Rider
+.idea/
+
+# npm & frontend builds (if using)
+node_modules/
+dist/
+build/
+
+# Coverage tools
+coverage/
+*.coverage
+*.coveragexml
+
+# Logs
+*.log
+
+# dotenv
+.env
+.env.*
+
+# SQLite or dev DB files
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*.swo
+*.old
+*.orig
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# Test results
+TestResults/
