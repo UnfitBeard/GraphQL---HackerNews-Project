@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstErp", "MyFirstErp\MyFirstErp.csproj", "{3FCBD0C2-7C19-B209-54EE-CE23B9CE8D63}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MyFirstErp (1)", "MyFirstErp (1)", "{43A7E9F2-94C0-77F1-5FD0-C2F6B7F3DDDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpBackend", "MyFirstErp\ErpBackend\ErpBackend.csproj", "{86E473B4-289E-BD4B-1477-94BA49E98997}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3FCBD0C2-7C19-B209-54EE-CE23B9CE8D63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FCBD0C2-7C19-B209-54EE-CE23B9CE8D63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FCBD0C2-7C19-B209-54EE-CE23B9CE8D63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FCBD0C2-7C19-B209-54EE-CE23B9CE8D63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86E473B4-289E-BD4B-1477-94BA49E98997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86E473B4-289E-BD4B-1477-94BA49E98997}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86E473B4-289E-BD4B-1477-94BA49E98997}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86E473B4-289E-BD4B-1477-94BA49E98997}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{86E473B4-289E-BD4B-1477-94BA49E98997} = {43A7E9F2-94C0-77F1-5FD0-C2F6B7F3DDDB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CEFD3532-8C01-4F6E-9DE9-93B64C21AE6C}
+	EndGlobalSection
+EndGlobal
