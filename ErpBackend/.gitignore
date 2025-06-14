@@ -1,9 +1,16 @@
-# Build results
+# Build output
 bin/
 obj/
-out/
-[Ll]og/
+*.dll
+*.exe
+*.pdb
+*.cache
 *.log
+*.msi
+*.apk
+*.app
+*.so
+*.dylib
 
 # User-specific files
 *.user
@@ -11,74 +18,63 @@ out/
 *.userosscache
 *.sln.docstates
 
-# Visual Studio Code
+# Auto-generated files
+*.db-shm
+*.db-wal
+*.db
+*.sqlite
+*.sql
+*.bak
+
+# Runtime artifacts
+*.runtimeconfig.json
+*.deps.json
+
+# EF Core Migrations build artifacts
+Migrations/*.Designer.cs
+Migrations/*Snapshot.cs
+
+# VS Code
 .vscode/
-
-# Visual Studio
-.vs/
-
-# Rider
-.idea/
-
-# ASP.NET artifacts
-wwwroot/lib/
-wwwroot/dist/
-wwwroot/node_modules/
-
-# .NET secrets and tools
-secrets.json
-*.pfx
-*.snk
-
-# .NET Core tooling
-project.lock.json
-project.fragment.lock.json
-artifacts/
-
-# OS junk
-*.DS_Store
-*.AppleDouble
-*.Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
+.history/
 
 # JetBrains Rider
 .idea/
 
-# npm & frontend builds (if using)
-node_modules/
-dist/
-build/
+# OS junk
+.DS_Store
+Thumbs.db
 
-# Coverage tools
-coverage/
-*.coverage
-*.coveragexml
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
 
 # Logs
 *.log
 
-# dotenv
-.env
-.env.*
+# Configuration
+appsettings.Development.json
+appsettings.Production.json
 
-# SQLite or dev DB files
-*.db
-*.sqlite
-*.sqlite3
+# Dotnet CLI
+*.nuget.cache
+*.nuget.dgspec.json
+*.nuget.g.props
+*.nuget.g.targets
 
-# Temporary files
-*.tmp
-*.bak
-*.swp
-*.swo
-*.old
-*.orig
+# Others
+*.sourcelink.json
+*.genruntimeconfig.cache
+*.csproj.FileListAbsolute.txt
 
-# Resharper
-_ReSharper*/
-*.[Rr]e[Ss]harper
-
-# Test results
+# VS Test Results
 TestResults/
+*.trx
+
+# Auto-generated
+*.AssemblyInfo.cs
+*.AssemblyAttributes.cs
+*.editorconfig
