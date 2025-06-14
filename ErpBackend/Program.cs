@@ -9,87 +9,97 @@ using System.Security.Claims;
 using ErpBackend.Models;
 using BCrypt.Net;
 
-var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<AppDbContext>(options =>
-options.UseSqlite("Data Source=ErpBackend.db"));
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-.AddJwtBearer(options =>
+internal class Program
 {
-    options.TokenValidationParameters = new TokenValidationParameters
+    private static void Main(string[] args)
     {
-        ValidateIssuer = false,
-        ValidateAudience = false,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your_secret_key"))
-    };
-});
+        var builder = WebApplication.CreateBuilder(args);
 
-var app = builder.Build();
+        // Add services to the container.
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+        builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseSqlite("Data Source=ErpBackend.db"));
+        builder.Services.AddAuthorization();
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your_secret_key"))
+            };
+        });
 
-app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+        var app = builder.Build();
 
-// Register Endpoint
-app.MapPost("/register", async (User userDto, AppDbContext db) =>
-{
-    var userExists = await db.Users.AnyAsync(u => u.Username == userDto.Username);
-    if (userExists) return Results.BadRequest("User Already Exists");
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
 
-    var user = new User
-    {
-        Username = userDto.Username,
-        PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDto.PasswordHash),
-    };
+        app.UseHttpsRedirection();
+        app.UseAuthentication();
+        app.UseAuthorization();
+       
+        // Register Endpoint
+        app.MapPost("/register", async (RegisterDto userDto, AppDbContext db) =>
+        {
 
-    db.Users.Add(user);
-    await db.SaveChangesAsync();
+            var userExists = await db.Users.AnyAsync(u => u.Username == userDto.Username);
+            if (userExists) return Results.BadRequest("User Already Exists");
 
-    return Results.Ok("User registered");
-});
+            var user = new User
+            {
+                Username = userDto.Username,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password),
+            };
 
-app.MapPost("/login", async (User userDto, AppDbContext db) =>
-{
-    var user = await db.Users.FirstOrDefaultAsync(u => u.Username == userDto.Username);
-    if (user is null || !BCrypt.Net.BCrypt.Verify(userDto.Password, user.PasswordHash))
-        return Results.Unauthorized();
-});
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+            db.Users.Add(user);
+            await db.SaveChangesAsync();
 
-app.Run();
+            return Results.Ok("User registered");
+        });
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        // Login endpoint
+
+
+        app.MapPost("/login", async (LoginDto loginDto, AppDbContext db) =>
+        {
+            var user = await db.Users.FirstOrDefaultAsync(u => u.Username == loginDto.Username);
+            if (user is null || !BCrypt.Net.BCrypt.Verify(loginDto.Password, user.PasswordHash))
+                return Results.Unauthorized();
+
+            // Generate JWT
+            var claims = new[]
+            {
+        new Claim(ClaimTypes.Name, user.Username),
+        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your_super_secret_key_123tyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyfuvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: null,
+                audience: null,
+                claims: claims,
+                expires: DateTime.UtcNow.AddHours(1),
+                signingCredentials: creds
+                );
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return Results.Ok(new { token = tokenString });
+        });
+
+        app.Run();
+    }
 }
