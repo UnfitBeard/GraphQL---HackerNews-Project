@@ -1,9 +1,10 @@
 import { Worker } from "bullmq";
-import { welcomeMessage, redisOptions, exportData } from "./index.js";
+import { welcomeMessage, redisOptions, exportData, sendEmail } from "./index.js";
 
 const jobHandlers = {
   welcomeMessage: welcomeMessage,
-  dataExport: exportData
+  dataExport: exportData,
+  sendEmail: sendEmail
 };
 
 const processJob = async (job) => {
