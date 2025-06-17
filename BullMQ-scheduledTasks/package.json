@@ -12,6 +12,10 @@
   "type": "module",
   "dependencies": {
     "bullmq": "^4.16.0",
-    "date-fns": "^3.0.5"
+    "date-fns": "^3.0.5",
+    "nodemailer": "^7.0.3"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^6.4.17"
   }
 }
